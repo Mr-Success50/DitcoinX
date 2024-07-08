@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DitcoinX</title>
+    <style>
+        body {
+            --bg-color: var(--tg-theme-bg-color);
+            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--tg-theme-text-color);
+            margin: 48px 24px;
+            padding: 0;
+            color-scheme: var(--tg-color-scheme);
+        }
+
+        a {
+            color: var(--tg-theme-link-color);
+        }
+        #viewport {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: var(--tg-viewport-stable-height, 100vh);
+            pointer-events: none;
+            transition: all .2s ease;
+        }
+        #viewport:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border-width: 4px;
+            border-style: solid;
+            border-image: linear-gradient(45deg, rgba(64, 224, 208, .5), rgba(173, 255, 47, .5)) 1;
+        }
+
+        #viewport-params-size,
+        #viewport-params-expand {
+            content: attr(text);
+            position: absolute;
+            display: inline-block;
+            background: var(--tg-theme-link-color, rgb(64, 224, 208));
+            right: 4px;
+            left: auto;
+            font-size: 8px;
+            padding: 4px;
+            vertical-align: top;
+        }
+        #viewport-params-size {
+            top: 4px;
+        }
+        #viewport-params-expand {
+            top: 30px;
+        }
+
+        button{
+            background-color: orange;
+            color: black;
+            height: 40px;
+            width: 100px;
+            font-size: 14px;
+            border-radius: 50%;   
+            font-weight: bold;
+            cursor: pointer;
+            border: none;  
+            margin: 0;
+        }
+
+        input{
+            text-align: center;
+            font-size: 30px;
+            box-sizing: border-box;  
+            width: 100%;   
+            border-style: hidden;
+            background-color: rgba(128, 128, 128, 0);
+          } 
+          input:focus{
+            outline: none;
+          }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div align="center" style="border-radius: 10px;padding:20px;background-color: rgba(128, 128, 128, 0.222);">
+             <!--<span style="font-size: 20px;">₦</span>-->
+             <p>Your DitcoinX Tokens</p>
+             <form>
+                <input type="text" id="number" value="0"/> 
+             </form>
+        </div> 
+
+        <div>
+            <div>
+                <p style="font-size: 16px;text-align: center;">DitCoinX Where Fun & Funds Is Endless, don't hesitate! Start tapping, continue tapping and you will be happy!</p>
+                <img onclick="claimTokens();" width="100%" src="./assets/tapps.png" alt="logo of telegram web apps">
+            </div>
+            <div align="center">
+                <button onclick="showPopup('Am your profile :)');">Profile</button>
+                <button onclick="showPopup('You clicked Me :(');">Mr POP</button>
+            </div>
+        </div>
+    </main> 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        // Init TWA
+        Telegram.WebApp.ready();
+
+        // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
+        Telegram.WebApp.onEvent('themeChanged', function() {
+            document.documentElement.className = Telegram.WebApp.colorScheme;
+        });
+
+        // Function to call showPopup API
+        function showPopup(text) {
+            alert(text)
+        }; 
+
+        function claimTokens(){ 
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            document.getElementById('number').value = value;
+        };
+    </script> 
+</body>
+</html>
